@@ -1,10 +1,14 @@
 package com.ildenio.curso.domain;
 
+
+import lombok.Getter;
+
 import java.io.Serializable;
 import java.util.Objects;
 
 public class Categoria implements Serializable {
 
+    @Getter
     private Integer id;
     private String nome;
 
@@ -13,10 +17,6 @@ public class Categoria implements Serializable {
     public Categoria(Integer id, String nome) {
         this.id = id;
         this.nome = nome;
-    }
-
-    public Integer getId() {
-        return id;
     }
 
     public void setId(Integer id) {
