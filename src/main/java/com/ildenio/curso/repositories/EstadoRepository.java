@@ -1,7 +1,7 @@
 package com.ildenio.curso.repositories;
 
 
-import com.ildenio.curso.domain.Categoria;
+
 import com.ildenio.curso.domain.Estado;
 import org.springframework.data.jpa.repository.JpaRepository;
 
