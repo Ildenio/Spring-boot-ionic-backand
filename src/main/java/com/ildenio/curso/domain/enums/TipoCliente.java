@@ -1,9 +1,7 @@
-package com.ildenio.curso.domain;
-
-import net.bytebuddy.implementation.bytecode.Throw;
+package com.ildenio.curso.domain.enums;
 
 public enum TipoCliente {
-    PESSOAFISICA(1,"Pessoa Física");
+    PESSOAFISICA(1,"Pessoa Física"),
     PESOOAJURIDICA(2,"Pessoa Jurídica");
 
     private int cod;

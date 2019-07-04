@@ -1,19 +1,25 @@
 package com.ildenio.curso.domain;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import com.ildenio.curso.domain.enums.TipoCliente;
 
-public class Cliente {
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.*;
+@Entity
+public class Cliente implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
     private String email;
     private String cpfOuCnpj;
-    private TipoCliente tipo;
+    private Integer tipo;
 
+    @OneToMany(mappedBy = "cliente")
     private List<Endereco>enderecos = new ArrayList<>();
 
+    @ElementCollection
+    @CollectionTable(name="TELEFONE")
     private Set<String> telefones = new HashSet<>();
 
     public Cliente(){}
@@ -24,7 +30,7 @@ public class Cliente {
         this.nome = nome;
         this.email = email;
         this.cpfOuCnpj = cpfOuCnpj;
-        this.tipo = tipo;
+        this.tipo = tipo.getCod();
     }
 
     public Integer getId() {
@@ -60,11 +66,11 @@ public class Cliente {
     }
 
     public TipoCliente getTipo() {
-        return tipo;
+        return TipoCliente.toEnum(tipo);
     }
 
     public void setTipo(TipoCliente tipo) {
-        this.tipo = tipo;
+        this.tipo = tipo.getCod();
     }
 
     public List<Endereco> getEnderecos() {
@@ -81,5 +87,18 @@ public class Cliente {
 
     public void setTelefones(Set<String> telefones) {
         this.telefones = telefones;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Cliente cliente = (Cliente) o;
+        return Objects.equals(id, cliente.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
