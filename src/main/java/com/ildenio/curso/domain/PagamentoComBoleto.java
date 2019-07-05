@@ -1,5 +1,6 @@
 package com.ildenio.curso.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.ildenio.curso.domain.enums.EstadoPagamento;
 
 import javax.persistence.Entity;
@@ -7,8 +8,10 @@ import java.util.Date;
 
     @Entity
     public class PagamentoComBoleto extends Pagamento {
-    private Date dataVencimento;
-    private Date dataPagamento;
+        @JsonFormat(pattern = "dd/MM/yyyy")
+        private Date dataVencimento;
+        @JsonFormat(pattern = "dd/MM/yyyy")
+        private Date dataPagamento;
 
     public PagamentoComBoleto(Integer id, EstadoPagamento estado, Pedido pedido, Date dataVencimento, Date dataPagamento) {
         super(id, estado, pedido);
