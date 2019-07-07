@@ -5,13 +5,13 @@ import java.io.Serializable;
 public class StandardError implements Serializable {
     private Integer id;
     private String msg;
-    private Long timeStand;
+    private Long timeStamd;
 
-    public StandardError(Integer id, String msg, Long timeStand) {
+    public StandardError(Integer id, String msg, Long timeStamd) {
         super();
         this.id = id;
         this.msg = msg;
-        this.timeStand = timeStand;
+        this.timeStamd = timeStamd;
     }
 
     public Integer getId() {
@@ -31,10 +31,10 @@ public class StandardError implements Serializable {
     }
 
     public Long getTimeStand() {
-        return timeStand;
+        return timeStamd;
     }
 
     public void setTimeStand(Long timeStand) {
-        this.timeStand = timeStand;
+        this.timeStamd = timeStand;
     }
 }
