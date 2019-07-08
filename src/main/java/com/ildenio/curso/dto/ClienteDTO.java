@@ -1,12 +1,13 @@
 package com.ildenio.curso.dto;
 
 import com.ildenio.curso.domain.Cliente;
+import com.ildenio.curso.services.validation.ClienteInsert;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
-
+@ClienteInsert
 public class ClienteDTO implements Serializable {
     private Integer id;
     @NotEmpty(message = "Preechimento obrigatório")
