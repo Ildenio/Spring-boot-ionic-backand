@@ -1,7 +1,9 @@
 package com.ildenio.curso.dto;
 
-import java.io.Serializable;
+import com.ildenio.curso.services.validation.ClienteInsert;
 
+import java.io.Serializable;
+@ClienteInsert
 public class ClienteNewDTO implements Serializable {
     private String nome;
     private String email;
