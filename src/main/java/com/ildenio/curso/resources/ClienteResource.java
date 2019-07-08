@@ -3,13 +3,16 @@ package com.ildenio.curso.resources;
 import com.ildenio.curso.domain.Cliente;
 import com.ildenio.curso.domain.Cliente;
 import com.ildenio.curso.dto.ClienteDTO;
+import com.ildenio.curso.dto.ClienteNewDTO;
 import com.ildenio.curso.services.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
+import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -43,6 +46,13 @@ public class ClienteResource {
         List<Cliente> list = service.findAll();
         List<ClienteDTO> listDTO = list.stream().map(obj -> new ClienteDTO(obj)).collect(Collectors.toList());
         return ResponseEntity.ok().body(listDTO);
+    }
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<Void> insert(@Valid @RequestBody ClienteNewDTO objDto){
+        Cliente obj =service.fromDto(objDto);
+        obj = service.insert(obj);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+        return ResponseEntity.created(uri).build();
     }
     @RequestMapping(value="/page", method=RequestMethod.GET)
     public ResponseEntity<Page<ClienteDTO>> findPage(

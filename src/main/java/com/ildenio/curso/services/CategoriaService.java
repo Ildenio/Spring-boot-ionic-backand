@@ -11,6 +11,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import com.ildenio.curso.dto.CategoriaDTO;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -23,9 +25,11 @@ public class CategoriaService {
         Optional<Categoria> obj = repo.findById(id);
         return obj.orElseThrow(()-> new ObjectNotFoundException("Objeto não encontrado! id: "+id+" ,Tipo: "+Categoria.class.getName()));
     }
+    @Transactional
     public Categoria insert(Categoria obj){
         obj.setId(null);
         return repo.save(obj);
+
     }
     public Categoria update(Categoria obj){
         Categoria newObj = find(obj.getId());
